@@ -53,6 +53,7 @@
 #include <stdexcept>
 #include <fstream>
 #include <fcntl.h>
+#include <sys/wait.h>
 
 #define HEADERSIZE 8000
 
@@ -239,4 +240,15 @@ class MyRuntimeError : public std::exception
             return message.c_str();
         }
 };
+
+template<typename Iterator, typename T>
+Iterator my_find(Iterator begin, Iterator end, const T& value) {
+    while (begin != end) {
+        if (*begin == value) {
+            return begin; // Found, return the iterator
+        }
+        ++begin;
+    }
+    return end; // Not found, return end iterator
+}
 #endif

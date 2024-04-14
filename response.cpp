@@ -32,7 +32,7 @@ bool Client::sendHredes()
     if (isSentHreders)
         return 1;
     isSentHreders = true;
-    fileStream.open(getfilePath(), std::ios::binary);
+    fileStream.open(getfilePath().c_str(), std::ios::binary);
     fileStream.seekg(0, std::ios::end);
     file_size = fileStream.tellg();
     fileStream.seekg(0, std::ios::beg);
@@ -376,13 +376,13 @@ void Client::matchingLocation(server &serv)
 
     for (std::deque<location>::iterator loc = serv.locations.begin(); loc != serv.locations.end(); ++loc)
     {
-        if ((*loc).path_location.back() != '/')
+        if ((*loc).path_location[(*loc).path_location.length() - 1] != '/')
         {
             tmp = (*loc).path_location + '/';
         }
         else
             tmp = (*loc).path_location;
-        if (resource.back() != '/')
+        if (resource[resource.length() - 1]  != '/')
             tmresource = resource + '/';
         else
             tmresource = resource;
@@ -433,9 +433,9 @@ void Client::matchingLocation(server &serv)
         if (realpath(getfilePath().c_str(), resolved_path) != NULL)
         {
             std::string validpath = std::string(resolved_path) + "/";
-            std::string t;
-            if(bestMatchLocation.root.back() != '/')
-                    t = bestMatchLocation.root + '/';
+            std::string t = bestMatchLocation.root;
+            if(bestMatchLocation.root[bestMatchLocation.root.length() - 1] != '/')
+                    t += '/';
             size_t n = validpath.find(t); // add root path
             if (n == std::string::npos)
             {

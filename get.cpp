@@ -101,7 +101,7 @@ bool Client::sendHredes2(std::string  fullPath)
 {
     if (isSentHreders)
         return 1;
-    fileStream.open(fullPath, std::ios::binary);
+    fileStream.open(fullPath.c_str(), std::ios::binary);
     fileStream.seekg(0, std::ios::end);
     file_size = fileStream.tellg();
     fileStream.seekg(0, std::ios::beg);
@@ -189,7 +189,7 @@ void Client::indexfile()
 void Client::handleDirectoryAutoIndex()
 {
     int sendbytes;
-    if(resource.back() != '/')
+    if(resource[resource.length() - 1] != '/')
     {
          movedpermanent();
     }

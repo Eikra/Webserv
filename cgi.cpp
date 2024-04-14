@@ -8,15 +8,15 @@ void Client::addingenv(std::string file, std::string exten)
     else
         execut = "/usr/local/bin/python3";
     av = new char *[3];
-    if (av == nullptr)
+    if (av == NULL)
         {status = 500; return;}
     av[0] = strdup(execut.c_str());
-    if (av[0] == nullptr)
+    if (av[0] == NULL)
         {status = 500;freeall(); return;}
     av[1] = strdup(file.c_str());
-    if (av[1] == nullptr)
+    if (av[1] == NULL)
         {status = 500;freeall(); return;}
-    av[2] = nullptr;
+    av[2] = NULL;
     std::map<std::string, std::string> mymap;
     mymap["REQUEST_METHOD"] = method;
     if (headers.find("Host") != headers.end())
@@ -50,7 +50,7 @@ void Client::addingenv(std::string file, std::string exten)
         }
     }
     envp = new char *[mymap.size() + 1];
-    if (envp == nullptr)
+    if (envp == NULL)
         {status = 500;freeall(); return;}
     hold = mymap.size();
     size_t i = 0;
@@ -58,7 +58,7 @@ void Client::addingenv(std::string file, std::string exten)
     {
         std::string envar = iter->first + "=" + iter->second;
         envp[i] = new char[envar.size() + 1];
-        if (envp[i] == nullptr)
+        if (envp[i] == NULL)
         {status = 500;freeall(); return;}
         std::strcpy(envp[i], envar.c_str());
         i++;

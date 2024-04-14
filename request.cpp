@@ -116,7 +116,8 @@ void    Client::checkEmptyChar()
 {
     for (int i = 0; i < bytes; i++)
     {
-        if ((buffer[i] < 32 && buffer[i] != 10 && buffer[i] != 13) || buffer[i] > 127)
+        int c = buffer[i];
+        if ((buffer[i] < 32 && buffer[i] != 10 && buffer[i] != 13) || c > 127)
         {
             status = 400;
             return;
@@ -297,7 +298,8 @@ void    Client::requestParser()
     int i = 0;
     while (i < bytes && !isGetAllHeaders)
     {
-        if ((buffer[i] < 32 && buffer[i] != 10 && buffer[i] != 13) || buffer[i] > 127)
+        int c = buffer[i];
+        if ((buffer[i] < 32 && buffer[i] != 10 && buffer[i] != 13) || c > 127)
         {
             status = 400;
             return;

@@ -122,7 +122,8 @@ void Client::Delete_method(std::string path)
             {
                 if(status == 0)
                     {
-                if(getfilePath().back() !='/' && status == 0)
+                        std::string tmpFilePath = getfilePath();
+                if(tmpFilePath[tmpFilePath.length() - 1] !='/' && status == 0)
                 {
                     status = 409;
                     return;

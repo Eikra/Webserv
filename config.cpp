@@ -273,7 +273,7 @@ void    checkServer_Names(std::vector<std::string> &server_names, std::string li
     std::istringstream iss(line);
     
     while (iss >> server_name) {
-        if (std::find(server_names.begin(), server_names.end(), server_name) != server_names.end())
+        if (my_find(server_names.begin(), server_names.end(), server_name) != server_names.end())
             throw MyRuntimeError("Error duplicate server name in server! : " + my_to_string(*i));
         server_names.push_back(server_name);
         if (server_names.size() > 3)
@@ -373,7 +373,7 @@ std::deque<std::string> parseMethod(std::string line,int *i)
         if (!((method == "POST" &&  method.size() == 4) || (method == "GET" && method.size() == 3)
             || (method == "DELETE" && method.size() == 6)))
             throw MyRuntimeError("Error: method not allowed! : " + my_to_string(*i));
-        if (std::find(methods.begin(), methods.end(), method) != methods.end())
+        if (my_find(methods.begin(), methods.end(), method) != methods.end())
             throw MyRuntimeError("Error duplicate method in location! : " + my_to_string(*i));
         methods.push_back(method);
     }

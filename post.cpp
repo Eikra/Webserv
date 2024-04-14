@@ -132,7 +132,7 @@ bool    Client::createFile()
     else
         fileExtension = "";
     fileNamePost = bestMatchLocation.upload_path + generateNewFileName(clientSocket) + fileExtension;
-    inputfile.open(fileNamePost, std::ios::binary);     
+    inputfile.open(fileNamePost.c_str(), std::ios::binary);     
     if (!inputfile.is_open())
     {
         status = 501;
