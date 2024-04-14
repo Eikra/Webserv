@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Methods</title>
+</head>
+<body>
+    <h1>Test Methods</h1>
+
+    <h2>Upload File (POST)</h2>
+    <form method="post" action="/webserver/upload.php" enctype="multipart/form-data">
+        <label for="file">Select a file:</label>
+        <input type="file" name="file" id="file" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <h2>Delete File (DELETE)</h2>
+    <form method="post" action="/webserver/delete.php">
+        <label for="filename">Enter filename to delete:</label>
+        <input type="text" name="filename" id="filename" required>
+        <button type="submit">Delete</button>
+    </form>
+</body>
+</html>
